@@ -1,13 +1,13 @@
 {
-  "name": "music_api",
+  "name": "music",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,ts --watch ./index.js --watch app --ignore 'lib/*' --exec 'npm run build && node ./index.js'",
-    "debug": "nodemon -e js,ts --watch ./index.js --watch app --ignore 'lib/*' --exec 'npm run build && node --inspect ./index.js'",
-    "build": "babel app --out-dir lib/app --extensions \".ts, .tsx\" --source-maps inline"
+    "start": "nodemon -e js,ts --watch ./index.js --watch app --ignore 'lib/*' --exec 'npm run build && node ./index.js' ",
+    "debug": "nodemon -e js,ts --watch ./index.js --watch app --ignore 'lib/*' --exec 'npm run build && node --inspect ./index.js' ",
+    "build": "babel app --out-dir lib/app --extensions \".ts,.tsx\" --source-maps inline"
   },
   "author": "",
   "license": "ISC",
@@ -27,8 +27,6 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-typescript": "^7.1.0",
     "@babel/runtime": "^7.2.0",
-    "@types/mysql": "^2.15.20",
-    "@types/node": "^17.0.14",
     "typescript": "^3.2.2"
   }
 }

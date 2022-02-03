@@ -189,9 +189,7 @@ app.delete('/albums/:artist/:id', function (req, res)
         else
             res.status(200).json({"success" : "Delete Album passed"})
     });
- })
-
-
+})
 
 // Route code ends
 // Start the Server

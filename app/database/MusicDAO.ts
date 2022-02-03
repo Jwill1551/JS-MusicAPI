@@ -41,31 +41,31 @@ export class MusicDAO
         let artists:Artist[] = [];
         
         // Get a pooled connection to the database, run the query to get all the distinct Artists, and return the List of Artists
-        this.pool.getConnection(function(err:any, connection:any)
-        {
-            // Throw error if an error
-            if (err) throw err
-
-            // Run query    
-            connection.query('SELECT distinct ARTIST FROM ALBUM', function (err:any, rows:any, fields:any) 
+        try {
+            this.pool.getConnection(function(err:any, connection:any)
             {
-                // Release connection in the pool
-                connection.release();
-
-                // Throw error if an error
-                if (err) throw err
-    
-                // Loop over result set and save the Artist Name in the List of Artists
-                for(let x=0;x < rows.length;++x)
+               // Run query    
+                connection.query('SELECT distinct ARTIST FROM ALBUM', function (err:any, rows:any, fields:any) 
                 {
-                    artists.push(new Artist(x, rows[x].ARTIST));
-                }
-    
-                // Do a callback to return the results
-                callback(artists);
+                    // Release connection in the pool
+                    connection.release();
+
+                    // Throw error if an error
+                    if (err) throw err
+        
+                    // Loop over result set and save the Artist Name in the List of Artists
+                    for(let x=0;x < rows.length;++x)
+                    {
+                        artists.push(new Artist(x, rows[x].ARTIST));
+                    }
+        
+                    // Do a callback to return the results
+                    callback(artists);
+                });
             });
-    
-        });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
      /**
@@ -86,7 +86,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to get all Albums for specific Artist
             connection.query = util.promisify(connection.query);
@@ -128,7 +128,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to get all Albums
             connection.query = util.promisify(connection.query);
@@ -171,7 +171,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to get all Albums for search partial Artist
             connection.query = util.promisify(connection.query);
@@ -214,7 +214,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to get all Albums for search partial Artist
             connection.query = util.promisify(connection.query);
@@ -254,7 +254,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to get all Albums for specific Artist
             connection.query = util.promisify(connection.query);
@@ -293,7 +293,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
 
             // Use Promisfy Util to make an async function and insert Album
             connection.query = util.promisify(connection.query);
@@ -328,7 +328,7 @@ export class MusicDAO
              connection.release();
  
              // Throw error if an error
-            if (err) throw err;
+            //if (err) throw err;
  
              // Use Promisfy Util to make an async function and update Album
              let changes = 0;
@@ -365,7 +365,7 @@ export class MusicDAO
             connection.release();
 
             // Throw error if an error
-           if (err) throw err;
+           //if (err) throw err;
 
             // Use Promisfy Util to make an async function and run query to delete the tracks for an Album
             let changes = 0;
